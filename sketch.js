@@ -16,6 +16,7 @@ let canvasAspectRatio = 1200 / 800; //set the variable of the canvas aspect rati
 const originalWidth = 1200; // set the original width
 const originalHeight = 800; // set the original height
 let aspectRatio = originalWidth / originalHeight; //Aspect ratio of the canvas
+let applyFilter = false; // Variables that control filter application
 
 
 
@@ -122,7 +123,13 @@ function draw() {
   }
   // Draw the image in the centre of the canvas, offsetting the image by half its width and height
   image(logoImage, (width / 2) - (logoWidth / 2), (height / 2) - (logoHeight / 2), logoWidth, logoHeight);
+  // Apply the filter, this technique is from https://editor.p5js.org/ZL/sketches/9Bm0K5HBh
+  if (applyFilter) { // If 'applyFilter' is true, the filter would be applied.
+    tint(0, 153, 204); // Apply the blue tint
+    image(img, 0, 0, width, height);
+  }
 }
+
 
 // Our function to get the closest color from the palette and this technique comes from https://happycoding.io/tutorials/p5js/images/image-palette
 function getPaletteColor(imgColor) {
@@ -206,3 +213,22 @@ function calculateImageDrawProps(canvasWidth, canvasHeight) {
     imgDrwPrps.yOffset = 0;
   }
 }
+  //Use the mouse to control the filter
+  function mousePressed() {
+    applyFilter = !applyFilter; //Toggle the value of applyFilter
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
