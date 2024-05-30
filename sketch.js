@@ -134,11 +134,11 @@ function draw() {
     // Draw the star image on top of the canvas and scale it to fit the canvas width
     image(starImg, 0, 0, width, starImg.height * (width / starImg.width));//adjust the size of star image
         // Draw star shapes in different position. this technique is from https://editor.p5js.org/p5/sketches/Form:_Star
-        push();
-        translate(width * 0.3, height * 0.3);
-        rotate(frameCount / 70.0);
-        star(0, 0, 5, 40, 3);
-        pop();
+        push(); //Save the current drawing state
+        translate(width * 0.3, height * 0.3);//Set the position of the star
+        rotate(frameCount / 70.0);//Set the star rotation speed
+        star(0, 0, 5, 40, 3); //draw the star
+        pop();//Restore the drawing state saved when push() was called
         
         push();
         translate(width * 0.5, height * 0.4);
@@ -255,7 +255,7 @@ function calculateImageDrawProps(canvasWidth, canvasHeight) {
       sy = y + sin(a + halfAngle) * radius1;
       vertex(sx, sy);
     }
-    endShape(CLOSE);
+    endShape(CLOSE);//Ends the shape definition and automatically closes the shape
   }
     
   
