@@ -53,6 +53,7 @@ class Brush {
 function preload() {
   img = loadImage('/assets/quay.jpg'); //Load the main image
   logoImage = loadImage('assets/Image annotation.png'); //Load the logo image
+  starImg = loadImage('assets/star.png'); // Load the star image
 } 
 
 function setup() {
@@ -127,6 +128,8 @@ function draw() {
   if (applyFilter) { // If 'applyFilter' is true, the filter would be applied.
     tint(0, 153, 204); // Apply the blue tint
     image(img, 0, 0, width, height);
+    // Draw the star image on top of the canvas and scale it to fit the canvas width
+    image(starImg, 0, 0, width, starImg.height * (width / starImg.width));//adjust the size of star image
   }
 }
 
