@@ -109,7 +109,7 @@ function draw() {
     if (y >= height) { // If y is greater than or equal to canvas height
            //The purpose of removing noLoop() and adding the new function is to make the draw() function continue to execute when mousePressed() is called.
       //noLoop(); // Stop the draw loop once the palette effect is complete
-      clear(); // Clear the canvas
+      clear(); // Clear the canvas - this technique is from programming course
       image(img, 0, 0, img.width, img.height); //Draw quay.jpg at original size
   }
 }
