@@ -107,9 +107,12 @@ function draw() {
 
     y++; // Increment y
     if (y >= height) { // If y is greater than or equal to canvas height
-      noLoop(); // Stop the draw loop once the palette effect is complete
-    }
+           //The purpose of removing noLoop() and adding the new function is to make the draw() function continue to execute when mousePressed() is called.
+      //noLoop(); // Stop the draw loop once the palette effect is complete
+      clear(); // Clear the canvas
+      image(img, 0, 0, img.width, img.height); //Draw quay.jpg at original size
   }
+}
 
   // Draw the logo image in the center of the canvas
   let logoAspect = logoWidth / logoHeight; // Calculate logo aspect ratio
@@ -130,6 +133,24 @@ function draw() {
     image(img, 0, 0, width, height);
     // Draw the star image on top of the canvas and scale it to fit the canvas width
     image(starImg, 0, 0, width, starImg.height * (width / starImg.width));//adjust the size of star image
+        // Draw star shapes in different position. this technique is from https://editor.p5js.org/p5/sketches/Form:_Star
+        push();
+        translate(width * 0.3, height * 0.3);
+        rotate(frameCount / 70.0);
+        star(0, 0, 5, 40, 3);
+        pop();
+        
+        push();
+        translate(width * 0.5, height * 0.4);
+        rotate(frameCount / 70.0);
+        star(0, 0, 5, 55, 3);
+        pop();
+        
+        push();
+        translate(width * 0.8, height * 0.2);
+        rotate(frameCount / 70.0);
+        star(0, 0, 5, 30, 3);
+        pop();
   }
 }
 
@@ -220,6 +241,23 @@ function calculateImageDrawProps(canvasWidth, canvasHeight) {
   function mousePressed() {
     applyFilter = !applyFilter; //Toggle the value of applyFilter
   }
+  //Function to draw the star shape
+  function star(x, y, radius1, radius2, npoints) {
+    let angle = TWO_PI / npoints;
+    let halfAngle = angle / 2.0;
+    fill(255); // fill the colour to white
+    beginShape();
+    for (let a = 0; a < TWO_PI; a += angle) {
+      let sx = x + cos(a) * radius2;
+      let sy = y + sin(a) * radius2;
+      vertex(sx, sy);
+      sx = x + cos(a + halfAngle) * radius1;
+      sy = y + sin(a + halfAngle) * radius1;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
+  }
+    
   
 
 
